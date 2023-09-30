@@ -1,0 +1,79 @@
+{
+  "users": [
+    {
+      "id": "u17253f9-30d5-49bb-8997-c83fb3ee5020",
+      "username": "me",
+      "pwd": "123"
+    }
+  ],
+  "columns": [
+    {
+      "id": 1,
+      "label": "À apprendre",
+      "cards": [],
+      "terms": []
+    },
+    {
+      "id": 2,
+      "label": "Je sais un peu",
+      "cards": [],
+      "terms": []
+    },
+    {
+      "id": 3,
+      "label": "Je sais bien",
+      "cards": [],
+      "terms": []
+    },
+    {
+      "id": 4,
+      "label": "Je sais parfaitement",
+      "cards": [],
+      "terms": []
+    }
+  ],
+  "terms": [
+    {
+      "id": 724,
+      "name": "HTML",
+      "open": false,
+      "selected": false
+    },
+    {
+      "id": 194,
+      "name": "JS",
+      "selected": false
+    },
+    {
+      "id": 586,
+      "name": "REACT",
+      "selected": false
+    }
+  ],
+  "cards": [
+    {
+      "id": 11,
+      "question": "Qui est l'inventeur du web ?",
+      "answer": "Tim Berners-Lee",
+      "column": 1,
+      "selected": false,
+      "tid": 724
+    },
+    {
+      "id": 22,
+      "question": "Qui est l'inventeur de javascript ?",
+      "answer": "Brendan Eich",
+      "column": 1,
+      "selected": false,
+      "tid": 194
+    },
+    {
+      "id": 33,
+      "question": "Sous quelle marque a été développé React ?",
+      "answer": "FaceBook",
+      "column": 1,
+      "selected": false,
+      "tid": 586
+    }
+  ]
+}

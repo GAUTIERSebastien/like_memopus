@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './styles/scss/index.scss';
-import App from './App';
+import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider, useParams } from 'react-router-dom';
-import { create } from 'domain';
-import loaderTerms from './loaders/terms';
-import Terms from './components/Terms';
+// import { create } from 'domain';
+// import loaderTerms from './loaders/terms';
+// import Terms from './components/Terms';
 
 
 
@@ -16,9 +16,10 @@ const root = ReactDOM.createRoot(
 const router =createBrowserRouter(
 createRoutesFromElements(
   <>
-  <Route path="/" element={<App />} />
-  {/* <Route path="" element={<Home />} /> */}
+  <Route path="/" element={<App />} />,
+  {/* children: [
   <Route path="terms" element={<Terms />} loader={loaderTerms} />
+  ] */}
   </>
 )
 )

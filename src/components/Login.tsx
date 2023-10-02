@@ -10,7 +10,7 @@ const Login = () => {
         const user = await JsonServer.getUserByUsername(username);
         if (user && user.pwd === pwd) {
             console.log('Connexion réussie');
-            // Redirigez l'utilisateur ou mettez à jour l'état de l'application ici
+            // Redirige l'utilisateur ou met à jour l'état de l'application ici
         } else {
             console.log('Échec de la connexion');
         }
@@ -18,7 +18,7 @@ const Login = () => {
 
     return (
         <>
-            <h2>Login</h2>
+            <h2>Connexion</h2>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="username">Name</label>
                 <input type="text" name="username" id="login" value={username} onChange={(e) => setUsername(e.target.value)} />

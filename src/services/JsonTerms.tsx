@@ -1,9 +1,9 @@
-export default class JsonServer {
+export default class JsonTerms {
 
     private static url = "http://localhost:3001/terms";
   
     static async loadTerms() {
-      return fetch(JsonServer.url)
+      return fetch(JsonTerms.url)
         .then((response) => {
           return response.json();
         })

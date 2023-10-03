@@ -1,10 +1,12 @@
-import { Link } from 'react-router-dom';
-const Term = (props: any) => {
+
+const Term = (term: any) => {
   return (
     <section className="">
+
       <button className="btn btn-secondary">
-        <Link to={'/terms/' + props.term.id}>{props.term.name}</Link>
+        {term.name}
       </button>
+      
     </section>
   );
 }

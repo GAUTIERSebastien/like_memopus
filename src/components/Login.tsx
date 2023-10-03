@@ -6,7 +6,7 @@ const Login = () => {
     const [pwd, setPwd] = useState('');
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+        // e.preventDefault();
         const user = await JsonServer.getUserByUsername(username);
         if (user && user.pwd === pwd) {
             console.log('Connexion réussie');

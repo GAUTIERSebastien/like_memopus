@@ -1,10 +1,16 @@
 
 const Column = (column:any) => {
     return (
-        <section className="">
-            <h3>{column.label}</h3>
-        </section>
+       <div className="card">
+  <div className="card-body">
+    <h5 className="card-title">{column.label}</h5>
+  </div>
+</div>
     );
 }
+
+
+
+
 
 export default Column;

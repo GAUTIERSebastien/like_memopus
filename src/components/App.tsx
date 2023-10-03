@@ -5,7 +5,7 @@ function App() {
   return (
     <div className="App">
       <header className="">
-        <h1 className="cards ">Memopus</h1>
+        <h1 className="d-flex justify-content-center">Memopus</h1>
             <Outlet/>
       </header>
     </div>

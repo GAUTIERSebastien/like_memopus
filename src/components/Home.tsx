@@ -8,9 +8,10 @@ import Column from './Column';
 const Home = () => {
     const [terms, setTerms] = useState<any[]>([]);
     const [columns, setColumns] = useState<any[]>([]);
+    const [cards, setCards] = useState<any[]>([]);
 
     useEffect(() => {
-        // Appel la méthode pour charger les termes
+        // Appel les méthodes pour charger les terms,cards et columns
         JsonTerms.loadTerms().then(data => {
             setTerms(data);
         }).catch(error => {
@@ -21,6 +22,12 @@ const Home = () => {
             setColumns(data);
         }).catch(error => {
             console.error("Erreur lors de la récupération des columns: ", error);
+        });
+
+        JsonCards.loadCards().then(data => {
+            setCards(data);
+        }).catch(error => {
+            console.error("Erreur lors de la récupération des cards: ", error);
         });
     }, []); 
 
@@ -36,9 +43,10 @@ const Home = () => {
 
             <section className="container mt-5">
                 <div className="d-flex justify-content-center flex-wrap gap-3">
-                    {columns.map((column, index) => (
-                        <Column key={index} {...column} />
-                    ))}
+                {columns.map((column, index) => {
+                    const columnCards = cards.filter(card => card.column === column.id);
+                    return <Column key={index} {...column} cards={columnCards} />;
+            })}
                 </div>
             </section>
         </>

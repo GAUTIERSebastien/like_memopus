@@ -1,16 +1,15 @@
+import  Card  from './Card';
 
-const Column = (column:any) => {
-    return (
-       <div className="card">
-  <div className="card-body">
-    <h5 className="card-title">{column.label}</h5>
-  </div>
-</div>
-    );
+const Column = ({ label, cards }: any) => {
+  return (
+      <div>
+          <h2>{label}</h2>
+          {cards.map((card: any, index: number) => (
+              <Card key={index} {...card} />
+          ))}
+      </div>
+  );
 }
-
-
-
 
 
 export default Column;

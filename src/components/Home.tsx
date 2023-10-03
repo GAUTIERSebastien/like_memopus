@@ -3,11 +3,13 @@ import JsonTerms from "../services/JsonTerms";
 import JsonColumns from "../services/JsonColumns";
 import JsonCards from "../services/JsonCards";
 import Term from './Term';
+import Column from './Column';
 
 
 
 const Home = () => {
     const [terms, setTerms] = useState<any[]>([]);
+    const [columns, setColumns] = useState<any[]>([]);
 
 
     useEffect(() => {
@@ -17,14 +19,28 @@ const Home = () => {
         }).catch(error => {
             console.error("Erreur lors de la récupération des terms: ", error);
         });
+
+        JsonColumns.loadColumns().then(data => {
+            setColumns(data);
+        }).catch(error => {
+            console.error("Erreur lors de la récupération des columns: ", error);
+        });
+
+
     }, []); 
     return (
         <>
-            <div>
+            <section>
                 {terms.map((term, index) => (
                     <Term key={index} {...term} />
                 ))}
-            </div>
+            </section>
+            <section>
+                {columns.map((column, index) => (
+                    <Column key={index} {...column} />
+                ))}
+            </section>
+            
         </>
     );
 }

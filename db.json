@@ -55,7 +55,7 @@
       "id": 11,
       "question": "Qui est l'inventeur du web ?",
       "answer": "Tim Berners-Lee",
-      "column": 1,
+      "column": 2,
       "selected": false,
       "tid": 724
     },

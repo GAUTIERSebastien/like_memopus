@@ -2,8 +2,8 @@ import  Card  from './Card';
 
 const Column = ({ label, cards }: any) => {
   return (
-      <div>
-          <h2>{label}</h2>
+    <div className="col-md-2">
+          <h5>{label}</h5>
           {cards.map((card: any, index: number) => (
               <Card key={index} {...card} />
           ))}

@@ -42,7 +42,7 @@ const Home = () => {
             </section>
 
             <section className="container mt-5">
-                <div className="d-flex justify-content-center flex-wrap gap-3">
+                <div className="row justify-content-center gap-3">
                 {columns.map((column, index) => {
                     const columnCards = cards.filter(card => card.column === column.id);
                     return <Column key={index} {...column} cards={columnCards} />;

@@ -2,6 +2,12 @@
 
 Reproduction du comportement de l'application memopus.com
 
+## Initialisation
+
+```bash
+npm install
+```
+
 ## Aide à l'installation
 
 ### Installer react avec typescript

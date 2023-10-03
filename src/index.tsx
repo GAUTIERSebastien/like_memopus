@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './styles/scss/index.scss';
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
-import Login from './components/Login';
+import Home from './components/Home';
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom';
 
 
@@ -12,14 +12,16 @@ import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
-const router =createBrowserRouter(
-createRoutesFromElements(
-  <>
-  <Route path="/" element={<App />} />,
-  {/* <Route path="/" element={<Login />} /> */}
-  </>
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <>
+      <Route path="/" element={<App />}>
+        <Route index element={<Home />} />
+      </Route>
+    </>
+  )
 )
-)
+
 root.render(
   <React.StrictMode>
     <RouterProvider router={router} />

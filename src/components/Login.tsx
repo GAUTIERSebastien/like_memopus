@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import JsonServer from '../services/JsonLogin';
+import JsonServer from '../services/JsonUsers';
 
 const Login = () => {
     const [username, setUsername] = useState('');
@@ -7,7 +7,7 @@ const Login = () => {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         // e.preventDefault();
-        const user = await JsonServer.getUserByUsername(username);
+        const user = await JsonServer.loadUsers(username);
         if (user && user.pwd === pwd) {
             console.log('Connexion réussie');
             // Redirige l'utilisateur ou met à jour l'état de l'application ici

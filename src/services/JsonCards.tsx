@@ -40,4 +40,19 @@ export default class JsonCards {
       console.error(`Erreur attrapée dans deleteCard : ` + error);
       });
   } 
+  // Ajoutez cette méthode à la classe JsonCards
+  static async createCard(card: any) {
+    return fetch(JsonCards.url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(card),
+    }).then((response) => {
+        return response.json();
+    }).catch((error) => {
+        console.error(`Erreur lors de la création de la card: ` + error);
+    });
+  }
+
 }

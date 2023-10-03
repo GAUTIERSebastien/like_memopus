@@ -4,11 +4,13 @@ import JsonColumns from "../services/JsonColumns";
 import JsonCards from "../services/JsonCards";
 import Term from './Term';
 import Column from './Column';
+import CreateCardForm from "./CreateCardForm";
 
 const Home = () => {
     const [terms, setTerms] = useState<any[]>([]);
     const [columns, setColumns] = useState<any[]>([]);
     const [cards, setCards] = useState<any[]>([]);
+    const [showForm, setShowForm] = useState(false);
 
     useEffect(() => {
         // Appel les méthodes pour charger les terms,cards et columns
@@ -30,7 +32,11 @@ const Home = () => {
             console.error("Erreur lors de la récupération des cards: ", error);
         });
     }, []); 
-
+    
+    const handleCardCreated = (newCard: any) => {
+        setCards([...cards, newCard]);
+        setShowForm(false);
+    };
     return (
         <>
             <section className="container">
@@ -41,12 +47,25 @@ const Home = () => {
                 </div>
             </section>
 
+            <section className="container mt-3">
+                <button className="btn btn-primary mb-3" onClick={() => setShowForm(!showForm)}>
+                    {showForm ? "Annuler" : "Ajouter une nouvelle carte"}
+                </button>
+                {showForm && (
+                <div className="row justify-content-center">
+                    <div className="col-md-6">
+                    <CreateCardForm onCardCreated={handleCardCreated} />
+                    </div>
+             </div>
+            )}
+            </section>
+
             <section className="container mt-5">
                 <div className="row justify-content-center gap-3">
-                {columns.map((column, index) => {
-                    const columnCards = cards.filter(card => card.column === column.id);
-                    return <Column key={index} {...column} cards={columnCards} />;
-            })}
+                    {columns.map((column, index) => {
+                        const columnCards = cards.filter(card => card.column === column.id);
+                        return <Column key={index} {...column} cards={columnCards} />;
+                    })}
                 </div>
             </section>
         </>

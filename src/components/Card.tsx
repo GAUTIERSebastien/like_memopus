@@ -26,14 +26,17 @@ const Card = (props: any) => {
                             <label htmlFor="answerInput" className="form-label">Réponse</label>
                             <input type="text" className="form-control" id="answerInput" value={answer} onChange={(e) => setAnswer(e.target.value)} />
                         </div>
-                        <button className="btn btn-success" onClick={saveChanges}>Enregistrer</button>
-                        <button className="btn btn-secondary ms-2" onClick={() => setIsEditing(false)}>Annuler</button>
+                        <button className="btn btn-success mb-2" onClick={saveChanges}>Enregistrer</button>
+                        <button className="btn btn-secondary mb-2" onClick={() => setIsEditing(false)}>Annuler</button>
+                        <button className="btn btn-danger mb-2" onClick={() => {
+                            JsonCards.deleteCard(props.id).then(() => {window.location.reload();});}}>Supprimer</button>
                     </div>
                 ) : (
                     <>
-                        <h6 className="card-title">Question: {question}</h6>
-                        <p className="card-text">Réponse: {answer}</p>
+                        <h6 className="card-title">{question}</h6>
+                        <p className="card-text">{answer}</p>
                         <button className="btn btn-primary" onClick={() => setIsEditing(true)}>Modifier</button>
+                        
                     </>
                 )}
             </div>

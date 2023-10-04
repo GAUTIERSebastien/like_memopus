@@ -64,20 +64,21 @@ const Card = (props: any) => {
           </div>
         ) : (
           <>
-            <button
-              className="btn btn-secondary"
-              onClick={() => props.moveCard && props.moveCard("left")}
-            >
-              ←
-            </button>
-            <button
-              className="btn btn-primary"
-              onClick={() => props.moveCard && props.moveCard("right")}
-            >
-              →
-            </button>
-
-            <h6 className="card-title">{question}</h6>
+            <section className="d-flex">
+              <button
+                className="btn btn-secondary btn-sm me-2"
+                onClick={() => props.moveCard && props.moveCard("left")}
+              >
+                ←
+              </button>
+              <h6 className="card-title">{question}</h6>
+              <button
+                className="btn btn-primary btn-sm me-2"
+                onClick={() => props.moveCard && props.moveCard("right")}
+              >
+                →
+              </button>
+            </section>
             <p className="card-text">{answer}</p>
             <button
               className="btn btn-primary"

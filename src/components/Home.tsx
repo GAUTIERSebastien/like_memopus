@@ -11,6 +11,7 @@ const Home = () => {
   const [columns, setColumns] = useState<any[]>([]);
   const [cards, setCards] = useState<any[]>([]);
   const [showForm, setShowForm] = useState(false);
+  const [selectedTermId, setSelectedTermId] = useState<null | number>(null);
 
   useEffect(() => {
     // Appel les méthodes pour charger les terms,cards et columns
@@ -43,12 +44,17 @@ const Home = () => {
     setCards([...cards, newCard]);
     setShowForm(false);
   };
+
+  const displayedCards = selectedTermId
+    ? cards.filter((card) => card.tid === selectedTermId)
+    : [];
+
   return (
     <>
       <section className="container">
         <div className="d-flex justify-content-center flex-wrap gap-3">
           {terms.map((term, index) => (
-            <Term key={index} {...term} />
+            <Term key={index} {...term} onTermSelected={setSelectedTermId} />
           ))}
         </div>
       </section>
@@ -72,9 +78,10 @@ const Home = () => {
       <section className="container mt-5">
         <div className="row justify-content-center gap-3">
           {columns.map((column, index) => {
-            const columnCards = cards.filter(
+            const columnCards = displayedCards.filter(
               (card) => card.column === column.id
             );
+
             return <Column key={index} {...column} cards={columnCards} />;
           })}
         </div>

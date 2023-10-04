@@ -8,8 +8,14 @@ const CreateCardForm = ({ onCardCreated, terms }: any) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const newCard = { question, answer, tid: selectedTerm };
-    JsonCards.createCard(newCard).then((card: any) => {
+    const newCard = {
+      question,
+      answer,
+      tid: parseInt(selectedTerm),
+      column: 1,
+      selected: false,
+    };
+    JsonCards.createCard(newCard).then((card) => {
       setQuestion("");
       setAnswer("");
       onCardCreated(card);

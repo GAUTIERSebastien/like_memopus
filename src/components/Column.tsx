@@ -2,21 +2,14 @@ import React, { useState, useEffect } from "react";
 import Card from "./Card";
 import JsonCards from "../services/JsonCards";
 import JsonColumns from "../services/JsonColumns";
+import ColumnInterface from "../interfaces/ColumnInterface";
 
-interface ColumnProps {
-  label: string;
-  cards: any[];
-  columns: any[];
+interface ColumnProps extends ColumnInterface {
   onCardMoved: (updatedCard: any) => void;
 }
 
-const Column: React.FC<ColumnProps> = ({
-  label,
-  cards,
-  columns,
-  onCardMoved,
-}) => {
-  const [localColumns, setLocalColumns] = useState(columns);
+const Column: React.FC<ColumnProps> = ({ label, cards, onCardMoved }) => {
+  const [localColumns, setLocalColumns] = useState<ColumnInterface[]>([]);
 
   useEffect(() => {
     JsonColumns.loadColumns().then(setLocalColumns).catch(console.error);
@@ -37,15 +30,12 @@ const Column: React.FC<ColumnProps> = ({
         ? (columnIndex - 1 + localColumns.length) % localColumns.length
         : (columnIndex + 1) % localColumns.length;
 
-    if (newColumnIndex < 0 || newColumnIndex >= localColumns.length) return;
-
     let newColumnId = localColumns[newColumnIndex].id;
     let updatedCard = {
       ...cards.find((card) => card.id === cardId),
       column: newColumnId,
     };
 
-    // Met à jour la base de données
     JsonCards.updateCard(updatedCard).then((cardFromDb) => {
       onCardMoved(cardFromDb);
     });
@@ -53,8 +43,7 @@ const Column: React.FC<ColumnProps> = ({
 
   return (
     <div className="col-md-2">
-      {" "}
-      <h5 className="text-center mb-4">{label}</h5>{" "}
+      <h5 className="text-center mb-4">{label}</h5>
       {cards.map((card) => (
         <Card
           key={card.id}

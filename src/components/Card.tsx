@@ -1,18 +1,32 @@
 import React, { useState } from "react";
 import JsonCards from "../services/JsonCards";
+import CardInterface from "../interfaces/CardInterface";
 
-const Card = (props: any) => {
+type MoveDirection = "left" | "right";
+
+interface CardProps extends Omit<CardInterface, "moveCard"> {
+  moveCard?: (direction: MoveDirection) => void;
+}
+
+const Card: React.FC<CardProps> = (props) => {
   const [isEditing, setIsEditing] = useState(false);
   const [question, setQuestion] = useState(props.question);
   const [answer, setAnswer] = useState(props.answer);
   const [showAnswer, setShowAnswer] = useState(false);
   const [userAnswer, setUserAnswer] = useState("");
 
-  const saveChanges = () => {
-    const updatedCard = { ...props, question, answer };
-    JsonCards.updateCard(updatedCard).then(() => {
-      setIsEditing(false);
-    });
+  const saveChanges = async () => {
+    const updatedCard = {
+      id: props.id,
+      tid: props.tid,
+      column: props.column,
+      selected: props.selected,
+      question,
+      answer,
+    };
+
+    await JsonCards.updateCard(updatedCard);
+    setIsEditing(false);
   };
 
   const renderResponseSection = () => (
@@ -51,7 +65,6 @@ const Card = (props: any) => {
       <div className="card-body">
         {isEditing ? (
           <>
-            {/* Editing UI */}
             <div className="mb-3">
               <label htmlFor="questionInput" className="form-label">
                 Question
@@ -82,11 +95,10 @@ const Card = (props: any) => {
               </button>
               <button
                 className="btn btn-danger"
-                onClick={() =>
-                  JsonCards.deleteCard(props.id).then(() =>
-                    window.location.reload()
-                  )
-                }
+                onClick={async () => {
+                  await JsonCards.deleteCard(props.id);
+                  window.location.reload();
+                }}
               >
                 Supprimer
               </button>

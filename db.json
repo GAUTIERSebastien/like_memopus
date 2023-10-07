@@ -55,7 +55,7 @@
       "id": 11,
       "question": "Qui est l'inventeur du web ?",
       "answer": "Tim Berners-Lee",
-      "column": 1,
+      "column": 4,
       "selected": false,
       "tid": 724
     },
@@ -63,7 +63,7 @@
       "id": 22,
       "question": "Qui est l'inventeur de javascript ?",
       "answer": "Brendan Eich",
-      "column": 2,
+      "column": 1,
       "selected": false,
       "tid": 194
     },

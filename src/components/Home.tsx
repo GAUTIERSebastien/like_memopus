@@ -36,6 +36,7 @@ const Home = () => {
 
   return (
     <>
+      <h1 className="d-flex justify-content-center">Memopus</h1>
       <section className="container">
         <div className="d-flex justify-content-center flex-wrap gap-3">
           {terms.map((term) => (

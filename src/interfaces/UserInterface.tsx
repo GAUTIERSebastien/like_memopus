@@ -1,7 +1,5 @@
-
 export default interface UserInterface {
-    id:string;
-    username:string;
-    pwd:string;
-
+  id: string;
+  username: string;
+  pwd: string;
 }

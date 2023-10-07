@@ -43,7 +43,7 @@ const Card: React.FC<CardProps> = (props) => {
       />
       <div className="mt-2 d-flex justify-content-between">
         <button className="btn btn-info" onClick={() => setShowAnswer(true)}>
-          Voir la réponse
+          Réponse
         </button>
         <button
           className="btn btn-outline-dark"
@@ -54,7 +54,7 @@ const Card: React.FC<CardProps> = (props) => {
       </div>
       {showAnswer && (
         <div className="alert alert-info mt-2" role="alert">
-          La bonne réponse est : {answer}
+          Réponse: {answer}
         </div>
       )}
     </div>

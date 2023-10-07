@@ -5,11 +5,7 @@ import App from "./components/App";
 import reportWebVitals from "./reportWebVitals";
 import Home from "./components/Home";
 import User from "./components/User";
-import {
-  BrowserRouter as Router, // changez ceci
-  Route,
-  Routes,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { AuthProvider, useAuth } from "./components/AuthContext";
 
 const root = ReactDOM.createRoot(

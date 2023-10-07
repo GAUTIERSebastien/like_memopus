@@ -5,11 +5,14 @@ import JsonCards from "../services/JsonCards";
 import Term from "./Term";
 import Column from "./Column";
 import CreateCardForm from "./CreateCardForm";
+import TermInterface from "../interfaces/TermInterface";
+import ColumnInterface from "../interfaces/ColumnInterface";
+import CardInterface from "../interfaces/CardInterface";
 
-const Home = () => {
-  const [terms, setTerms] = useState<any[]>([]);
-  const [columns, setColumns] = useState<any[]>([]);
-  const [cards, setCards] = useState<any[]>([]);
+const Home: React.FC = () => {
+  const [terms, setTerms] = useState<TermInterface[]>([]);
+  const [columns, setColumns] = useState<ColumnInterface[]>([]);
+  const [cards, setCards] = useState<CardInterface[]>([]);
   const [showForm, setShowForm] = useState(false);
   const [selectedTermId, setSelectedTermId] = useState<null | number>(null);
 
@@ -19,12 +22,12 @@ const Home = () => {
     JsonCards.loadCards().then(setCards).catch(console.error);
   }, []);
 
-  const handleCardCreated = (newCard: any) => {
+  const handleCardCreated = (newCard: CardInterface) => {
     setCards([...cards, newCard]);
     setShowForm(false);
   };
 
-  const handleCardMoved = (updatedCard: any) => {
+  const handleCardMoved = (updatedCard: CardInterface) => {
     setCards((prevCards) =>
       prevCards.map((card) => (card.id === updatedCard.id ? updatedCard : card))
     );

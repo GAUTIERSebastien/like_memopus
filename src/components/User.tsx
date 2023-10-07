@@ -1,14 +1,25 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useAuth } from "./AuthContext";
+import UserInterface from "../interfaces/UserInterface";
 
-const User = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+const User: React.FC = () => {
+  const [user, setUser] = useState<Omit<UserInterface, "id">>({
+    username: "",
+    pwd: "",
+  });
   const { login } = useAuth();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    login(username, password);
+    login(user.username, user.pwd);
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setUser((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   return (
@@ -19,19 +30,21 @@ const User = () => {
           <div className="mb-3">
             <input
               type="text"
+              name="username"
               className="form-control"
               placeholder="Username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              value={user.username}
+              onChange={handleChange}
             />
           </div>
           <div className="mb-3">
             <input
               type="password"
+              name="pwd"
               className="form-control"
               placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={user.pwd}
+              onChange={handleChange}
             />
           </div>
           <div className="d-flex justify-content-center">

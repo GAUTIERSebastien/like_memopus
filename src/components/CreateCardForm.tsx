@@ -1,17 +1,28 @@
 import React, { useState } from "react";
 import JsonCards from "../services/JsonCards";
+import TermInterface from "../interfaces/TermInterface";
 
-const CreateCardForm = ({ onCardCreated, terms }: any) => {
-  const [question, setQuestion] = useState("");
-  const [answer, setAnswer] = useState("");
-  const [selectedTerm, setSelectedTerm] = useState(terms[0]?.id || "");
+interface CreateCardFormProps {
+  onCardCreated: (card: any) => void;
+  terms: TermInterface[];
+}
+
+const CreateCardForm: React.FC<CreateCardFormProps> = ({
+  onCardCreated,
+  terms,
+}) => {
+  const [question, setQuestion] = useState<string>("");
+  const [answer, setAnswer] = useState<string>("");
+  const [selectedTerm, setSelectedTerm] = useState<string | number>(
+    terms[0]?.id.toString() || ""
+  );
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const newCard = {
       question,
       answer,
-      tid: parseInt(selectedTerm),
+      tid: parseInt(selectedTerm.toString(), 10),
       column: 1,
       selected: false,
     };
@@ -63,7 +74,7 @@ const CreateCardForm = ({ onCardCreated, terms }: any) => {
               value={selectedTerm}
               onChange={(e) => setSelectedTerm(e.target.value)}
             >
-              {terms.map((term: any) => (
+              {terms.map((term) => (
                 <option key={term.id} value={term.id}>
                   {term.name}
                 </option>

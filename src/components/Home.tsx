@@ -61,8 +61,8 @@ const Home = () => {
         )}
       </section>
 
-      <section className="container mt-5">
-        <div className="row justify-content-center gap-3">
+      <section className="container-fluid mt-5">
+        <div className="row justify-content-center gap-2">
           {columns.map((column) => {
             const columnCards = displayedCards.filter(
               (card) => card.column === column.id

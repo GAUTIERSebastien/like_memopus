@@ -53,7 +53,8 @@ const Column: React.FC<ColumnProps> = ({
 
   return (
     <div className="col-md-2">
-      <h5 className="text-center">{label}</h5>
+      {" "}
+      <h5 className="text-center mb-4">{label}</h5>{" "}
       {cards.map((card) => (
         <Card
           key={card.id}
